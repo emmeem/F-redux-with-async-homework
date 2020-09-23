@@ -18,9 +18,9 @@ const fetchUserInfoReceive = data => {
   };
 };
 
-export const fetchUserInfo = (dispatch, url) => {
-  dispatch(fetchUserInfoRequest());
-  return fetch(url).then(res =>
-    fetchUserInfoReceive(res.json())
-  );
+export const fetchUserInfo = () => dispatch => {
+   dispatch(fetchUserInfoRequest());
+   return fetch('https://my-json-server.typicode.com/kevindongzg/demo/login')
+  .then(res => res.json())
+  .then(data => dispatch(fetchUserInfoReceive(data)));
 };

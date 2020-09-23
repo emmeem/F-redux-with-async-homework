@@ -36,15 +36,14 @@ const mapStateToProps = ({ userInfo }) => ({
   userInfo
 });
 
-const url = 'https://my-json-server.typicode.com/kevindongzg/demo/login'; 
-
 const mapDispatchToProps = dispatch => ({
   handleSignOut: () => {
     dispatch(clearUserInfo());
   },
 
   handleFetchInfo: () => {
-    dispatch(fetchUserInfo(dispatch, url))},
+    dispatch(fetchUserInfo());
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
