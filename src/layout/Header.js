@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { setUserInfo, clearUserInfo } from '../actions';
+import { fetchUserInfo, clearUserInfo } from '../actions';
 import './Header.scss';
 
 class Header extends Component {
@@ -8,14 +8,7 @@ class Header extends Component {
     if (this.props.userInfo.logged) {
       this.props.handleSignOut();
     } else {
-      fetch('https://my-json-server.typicode.com/kevindongzg/demo/login')
-        .then(res => res.json())
-        .then(data => {
-          this.props.handleSignIn({ logged: true, ...data });
-        })
-        .catch(err => {
-          console.log(err);
-        });
+      this.props.handleFetchInfo();
     }
   };
 
@@ -43,9 +36,15 @@ const mapStateToProps = ({ userInfo }) => ({
   userInfo
 });
 
-const mapDispatchToProps = {
-  handleSignIn: info => setUserInfo(info),
-  handleSignOut: () => clearUserInfo()
-};
+const url = 'https://my-json-server.typicode.com/kevindongzg/demo/login'; 
+
+const mapDispatchToProps = dispatch => ({
+  handleSignOut: () => {
+    dispatch(clearUserInfo());
+  },
+
+  handleFetchInfo: () => {
+    dispatch(fetchUserInfo(dispatch, url))},
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
