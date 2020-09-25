@@ -2,6 +2,26 @@
   height: 100%;
   overflow: hidden;
 
+  .fail {
+    margin-left: 40%;
+  }
+
+  .cancel {
+    border-style: none;
+    height: 30px;
+    width: 60px;
+    margin-left: 35%;
+  }
+
+  .retry {
+    border-style: none;
+    margin-left: 30px;
+    height: 30px;
+    width: 60px;
+    background-color: blue;
+    color: white;
+  }
+
   .main {
     width: 84%;
     float: left;
